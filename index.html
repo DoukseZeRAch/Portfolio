@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seddouk Rachid — Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-dark: #2c2c2c;
+            --secondary-dark: #4a4a4a;
+            --accent-gold: #b8860b;
+            --text-dark: #1a1a1a;
+            --text-muted: #666666;
+            --background-white: #ffffff;
+            --background-cream: #fefefe;
+            --border-light: #e5e5e5;
+            --shadow-subtle: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: var(--background-white);
+            color: var(--text-dark);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--background-cream);
+            min-height: 100vh;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        /* ── MAIN NAV ── */
+        .main-nav {
+            background: var(--primary-dark);
+            padding: 1.2rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+
+        .main-nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.25rem;
+            flex-wrap: wrap;
+        }
+
+        .main-nav-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.75);
+            padding: 0.6rem 1.4rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .main-nav-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        .main-nav-btn.active {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+            color: #fff;
+        }
+
+        /* ── SUB NAV ── */
+        .sub-nav {
+            display: none;
+            background: var(--background-white);
+            border-bottom: 2px solid var(--border-light);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 52px;
+            z-index: 100;
+        }
+
+        .sub-nav.visible { display: block; }
+
+        .sub-nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .sub-nav-btn {
+            background: var(--background-white);
+            border: 2px solid var(--border-light);
+            color: var(--text-dark);
+            padding: 0.6rem 1.2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sub-nav-btn:hover {
+            background: var(--primary-dark);
+            color: #fff;
+            border-color: var(--primary-dark);
+        }
+
+        .sub-nav-btn.active {
+            background: var(--accent-gold);
+            color: #fff;
+            border-color: var(--accent-gold);
+        }
+
+        /* ── PAGES ── */
+        .page {
+            display: none;
+            padding: 3rem 2rem;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .page.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── TYPOGRAPHY ── */
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .name {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: var(--accent-gold);
+            margin: 0.75rem auto 0;
+        }
+
+        /* ── EDITORIAL TEXT (Identity / Intention) ── */
+        .editorial {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .editorial p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .editorial em {
+            font-style: italic;
+            color: var(--accent-gold);
+        }
+
+        .editorial .closing {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            text-align: center;
+            color: var(--primary-dark);
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        /* ── CARDS ── */
+        .project-card {
+            background: var(--background-white);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .project-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .project-venue {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .project-year {
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .project-description {
+            color: var(--text-dark);
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .experience-card {
+            background: var(--background-white);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-gold);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .job-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .company {
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .period {
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .cert-group {
+            margin-bottom: 2rem;
+        }
+
+        .cert-group-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .cert-list {
+            list-style: none;
+        }
+
+        .cert-list li {
+            padding: 0.4rem 0;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--secondary-dark);
+            font-size: 0.95rem;
+        }
+
+        .cert-list li:last-child { border-bottom: none; }
+
+        .cert-note {
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        /* ── SKILLS GRID ── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .skill-category {
+            background: var(--background-white);
+            padding: 1.5rem;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .skill-category h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .skill-list { list-style: none; }
+
+        .skill-list li {
+            padding: 0.4rem 0;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--secondary-dark);
+            font-size: 0.95rem;
+        }
+
+        .skill-list li:last-child { border-bottom: none; }
+
+        /* ── LANGUAGES ── */
+        .languages-section { text-align: center; margin: 2rem 0; }
+
+        .language-list {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .language-item {
+            background: var(--accent-gold);
+            color: #fff;
+            padding: 0.6rem 1.2rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* ── AWARDS ── */
+        .award-card {
+            background: var(--background-white);
+            padding: 1.5rem 2rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-subtle);
+            text-align: center;
+        }
+
+        .award-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ── PORTFOLIO LINKS ── */
+        .portfolio-section {
+            background: var(--background-white);
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .portfolio-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .link-item {
+            margin-bottom: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            background: var(--background-cream);
+            border: 1px solid var(--border-light);
+        }
+
+        .link-item strong {
+            color: var(--text-dark);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .link-item a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .link-item a:hover { color: var(--primary-dark); }
+
+        /* ── VIDEO THUMBNAILS ── */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .video-thumb {
+            position: relative;
+            display: block;
+            text-decoration: none;
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .video-thumb:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .video-thumb img {
+            width: 100%;
+            display: block;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+
+        .video-thumb .play-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .video-thumb:hover .play-overlay { opacity: 1; }
+
+        .play-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-icon::after {
+            content: '';
+            border-left: 14px solid var(--accent-gold);
+            border-top: 9px solid transparent;
+            border-bottom: 9px solid transparent;
+            margin-left: 4px;
+        }
+
+        .video-label {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            background: var(--background-white);
+            border-top: 1px solid var(--border-light);
+            font-family: 'Crimson Text', serif;
+        }
+
+        .link-btn {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            margin: 0.25rem;
+        }
+
+        .link-btn:hover {
+            background: var(--accent-gold);
+            color: #fff;
+        }
+
+        /* ── PE PROJECT CARDS ── */
+        .pe-card {
+            background: var(--background-white);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-subtle);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pe-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .pe-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .pe-card-sub {
+            color: var(--accent-gold);
+            font-style: italic;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .pe-card-body {
+            color: var(--secondary-dark);
+            line-height: 1.8;
+        }
+
+        .pe-card-link {
+            display: inline-block;
+            margin-top: 1.2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            border-bottom: 1px solid var(--accent-gold);
+            text-decoration: none;
+        }
+
+        .project-live-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.6rem 1.5rem;
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .project-live-link:hover {
+            background: var(--accent-gold);
+            color: #fff;
+        }
+
+        /* ── PDF BUTTON ── */
+        .pdf-btn {
+            display: block;
+            margin: 0 auto 2rem;
+            padding: 0.75rem 2rem;
+            background: var(--primary-dark);
+            color: #fff;
+            border: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: background 0.3s ease;
+        }
+
+        .pdf-btn:hover { background: var(--accent-gold); }
+
+        /* ── FOOTER ── */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* ── PRINT ── */
+        @media print {
+            /* Masquer la navigation et les boutons */
+            .main-nav, .sub-nav, .pdf-btn, .video-grid,
+            .play-overlay, .link-btn, .project-live-link,
+            .pe-card-link { display: none !important; }
+
+            /* N'afficher QUE la page active */
+            .page { display: none !important; }
+            .page.active { display: block !important; }
+
+            /* Mise en page A4 propre */
+            @page {
+                margin: 18mm 20mm;
+                size: A4 portrait;
+            }
+
+            * {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+
+            body { font-size: 11pt; line-height: 1.5; }
+
+            .container {
+                max-width: 100%;
+                box-shadow: none;
+                background: #fff;
+            }
+
+            /* Titres — éviter les orphelins */
+            .section-title {
+                font-size: 14pt;
+                page-break-after: avoid;
+                margin-top: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .name { font-size: 26pt; }
+            .subtitle { font-size: 11pt; }
+
+            /* Éviter de couper les cartes entre deux pages */
+            .experience-card,
+            .project-card,
+            .award-card,
+            .skill-category,
+            .cert-group,
+            .portfolio-section,
+            .link-item { page-break-inside: avoid; }
+
+            /* Garder titre + premier contenu ensemble */
+            .job-title, .project-title, .cert-group-title { page-break-after: avoid; }
+
+            /* Forcer un saut de page avant certaines sections */
+            .print-break {
+                page-break-before: always;
+                margin-top: 0 !important;
+            }
+
+            /* Skills grid en 2 colonnes max pour l'impression */
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                page-break-inside: avoid;
+            }
+
+            /* Alléger les ombres et bordures pour l'impression */
+            .experience-card,
+            .project-card,
+            .award-card,
+            .skill-category {
+                box-shadow: none;
+                border: 1pt solid #ccc;
+            }
+
+            /* Réduire les espacements */
+            .page.active { padding: 0; }
+            .page-header { margin-bottom: 1.5rem; padding-bottom: 1rem; }
+            .editorial p { margin-bottom: 0.8rem; font-size: 10.5pt; }
+
+            /* Liens : afficher l'URL en texte dans les items */
+            .link-item a[href]::after {
+                content: " (" attr(href) ")";
+                font-size: 8pt;
+                color: #666;
+            }
+        }
+
+        /* ── CONTACT GRID ── */
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            color: var(--secondary-dark);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ══════════════════════════════════════════
+         MAIN NAVIGATION
+    ══════════════════════════════════════════ -->
+    <nav class="main-nav">
+        <div class="main-nav-buttons">
+            <button class="main-nav-btn active" onclick="showSection('identity')">Portrait</button>
+            <button class="main-nav-btn" onclick="showSection('intention')">Intent</button>
+            <button class="main-nav-btn" onclick="showSection('av')">Audiovisual</button>
+            <button class="main-nav-btn" onclick="showSection('pe')">Prompt Engineering</button>
+        </div>
+    </nav>
+
+    <!-- SUB NAV — AUDIOVISUAL -->
+    <nav class="sub-nav" id="sub-av">
+        <div class="sub-nav-buttons">
+            <button class="sub-nav-btn active" onclick="showPage('av-cv', 'av')">CV</button>
+            <button class="sub-nav-btn" onclick="showPage('av-portfolio', 'av')">Portfolio</button>
+        </div>
+    </nav>
+
+    <!-- SUB NAV — PROMPT ENGINEERING -->
+    <nav class="sub-nav" id="sub-pe">
+        <div class="sub-nav-buttons">
+            <button class="sub-nav-btn active" onclick="showPage('pe-cv', 'pe')">CV</button>
+            <button class="sub-nav-btn" onclick="showPage('pe-portfolio', 'pe')">Portfolio</button>
+            <button class="sub-nav-btn" onclick="showPage('pe-avance', 'pe')">Avance</button>
+            <button class="sub-nav-btn" onclick="showPage('pe-shieldmind', 'pe')">ShieldMind</button>
+            <button class="sub-nav-btn" onclick="showPage('pe-hidden', 'pe')">Hidden Team</button>
+        </div>
+    </nav>
+
+
+    <!-- ══════════════════════════════════════════
+         PAGE 1 — IDENTITY
+    ══════════════════════════════════════════ -->
+    <div id="identity" class="page active">
+        <div class="page-header">
+            <h1 class="name">SEDDOUK RACHID</h1>
+            <p class="subtitle">Prompt Engineer · AI Product Manager · Creative Director</p>
+            <p class="meta">Brussels, Belgium · BCE 787.434.914</p>
+        </div>
+
+        <div class="editorial">
+            <p>For over a decade, I built worlds out of light and sound — immersive projections on cathedral facades, museum installations, live stage design for opera and theatre. I directed films that won awards, led multi-camera broadcasts for international institutions, and created animated works that crossed the boundary between art and science communication.</p>
+
+            <p>My foundation was architecture — a discipline I defined as <em>une science sensible, un art sensé</em> : a field where technical rigour and human sensitivity are not opposites but dependencies. It taught me to think in structure and form simultaneously — to organize complexity before giving it shape, to understand constraints before designing within them.</p>
+
+            <p>That knowledge never left me. It followed me into audiovisual production, where I learned that immersive projection mapping is not an artistic gesture — it is a precision engineering problem. Real-time data flows, hardware synchronization, spatial calibration, software systems managing gigabytes of visual content across multiple surfaces. The art was the intention. The science was the execution.</p>
+
+            <p>I was able to explain video production with mathematics — colour managed in 3D vector spaces, pixels organized in matrices, luminance encoded in 8-bit or 10-bit gradients. The creative decision and the technical equation were always the same thing.</p>
+
+            <p>When I moved into AI, the translation was natural.</p>
+
+            <p>Today I design the invisible architectures that make AI produce meaningful output. Prompt engineering, as I practice it, is a form of Socratic dialogue — a maieutic art guided by semantic equations that reduce the infinite probabilistic space of a language model into a precise, intentional response.</p>
+
+            <p class="closing">I am not an engineer who learned to be creative.<br>I am a creative who learned to engineer.</p>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════
+         PAGE 2 — NOTE D'INTENTION
+    ══════════════════════════════════════════ -->
+    <div id="intention" class="page">
+        <div class="page-header">
+            <h1 class="name">Intent</h1>
+            <p class="subtitle">AI Creator · Prompt Engineer</p>
+        </div>
+
+        <div class="editorial">
+            <p>What this role requires is someone who can think in both languages simultaneously — the language of creative intention and the language of generative systems. Someone who has stood in the edit suite making frame-by-frame decisions, and who can now encode that knowledge into prompt architectures that scale.</p>
+
+            <p>A 15-second commercial is not a short film. It is a constraint system. Every frame carries intent. Every cut is a decision. The opening must earn attention in under two seconds, the middle must build desire, the end must trigger action — and all of this must feel effortless to the viewer.</p>
+
+            <p>But it is also a technical problem. How to place a logo so it anchors without interrupting. How to respect a brand's colour system with precision, not approximation. How to calibrate music so the emotional beat lands exactly where the visual cut does. How to read a company, understand its audience, and distil that understanding into a sequence that communicates in seconds.</p>
+
+            <p>I have solved these problems by hand, hundreds of times. I know what makes them work — not intuitively, but analytically. A storyboard is not a drawing. It is a logical sequence encoded in visual language, carrying brand constraints, narrative structure, and audience psychology simultaneously.</p>
+
+            <p>My intention in this role is simple : to bring that accumulated knowledge into the architecture of your system.</p>
+
+            <p>Not as a consultant who observes from the outside — but as someone who sits at the intersection of creative direction and generative engineering, and builds the frameworks that make both speak the same language.</p>
+
+            <p class="closing">Find the common points without confusing the planes.</p>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════
+         PAGE 3a — AUDIOVISUAL CV
+    ══════════════════════════════════════════ -->
+    <div id="av-cv" class="page">
+        <div class="page-header">
+            <h1 class="name">SEDDOUK RACHID</h1>
+            <p class="subtitle">Director · Audiovisual Producer · Projection & Immersive Media Specialist</p>
+            <div class="contact-info">
+                <span>Brussels, Belgium</span>
+                <span>rachid.seddouk@gmail.com</span>
+                <span>+32 465 734 635</span>
+            </div>
+        </div>
+
+        <button class="pdf-btn" onclick="printCurrentPage('Seddouk Rachid — CV Audiovisual')">↓ Download as PDF — Audiovisual CV</button>
+
+        <div class="editorial" style="margin-bottom:2.5rem;">
+            <p>Audiovisual professional with over a decade of expertise in direction, production and post-production. Having worked with Uni Europa, Laurent-Perrier and Allianz, fluent in the full production pipeline — from concept to delivery — I combine technicity with a rigorous aesthetic sensibility.</p>
+        </div>
+
+        <h2 class="section-title">Immersive Projection & Installation</h2>
+
+        <div class="project-card">
+            <h3 class="project-title">THE LIVING TABLEAU — THE LAST SUPPER</h3>
+            <p class="project-venue">Palazzo Reale, Milan</p>
+            <p class="project-year">2022</p>
+            <p class="project-description">Design of all video techniques for this exceptional video artwork recreating Leonardo da Vinci's masterpiece. Collaboration with an internationally renowned artistic team including Vittorio Storaro (Oscar winner) and Dante Ferretti (Oscar winner). Development of technical solutions for projection and faithful recreation of the painting in a prestigious museum environment.</p>
+        </div>
+
+        <div class="project-card">
+            <h3 class="project-title">CITIZEN LIGHTS — "CITIZENS AT THE HEART OF LIGHT"</h3>
+            <p class="project-venue">Schaerbeek — Avenue Louis Bertrand & Galerie Art Ère 30</p>
+            <p class="project-year">2018–2020</p>
+            <p class="project-description"><strong>Participatory artistic approach:</strong> Installation involving about forty residents of Schaerbeek invited to lend their portrait for the duration of the festival of lights. Desire to put citizens at the center of light, through unlikely but provoked encounters by the desire to share.<br><br><strong>Technical innovation:</strong> Use of video morphing technique to symbolically read ages, genders, origins, convictions, creating an invisible link between each photographed person. Videos projected on projection tulles — light and transparent material that floats in the wind, bringing a poetic and sensitive dimension to the artistic approach.</p>
+        </div>
+
+        <div class="project-card">
+            <h3 class="project-title">SCENOGRAPHIC PROJECTIONS — OPÉRA-THÉÂTRE DE METZ</h3>
+            <p class="project-venue">Opéra-Théâtre de Metz Métropole</p>
+            <p class="project-year">2013–2015</p>
+            <p class="project-description"><strong>Designer and technician specialized in scenographic video projections</strong> — Development of immersive technical solutions integrating architectural mapping and audiovisual synchronization for four major lyrical productions.<br><br>Carmina Burana &amp; La Maison de Bernarda Alba (2015) · Roméo et Juliette (2014–2015) · Un Amour en Guerre (2014) · Charly 9 (2013–2014)</p>
+        </div>
+
+        <div class="project-card">
+            <h3 class="project-title">HOLOGRAPHIC INSTALLATION "CURTAIN / BEHIND THE CURTAIN"</h3>
+            <p class="project-venue">Wallonia-Brussels Federation</p>
+            <p class="project-year">2010</p>
+            <p class="project-description">Exploratory holographic installation aimed at renewing stage arts through digital technologies. Projection on transparent support exploring the frontier between real body and virtual image. Performance without usual hall structure where beginning and end are determined by spectators' entry and exit, detected by real-time motion capture.</p>
+        </div>
+
+        <h2 class="section-title" style="margin-top:2.5rem;">Director & Audiovisual Producer</h2>
+
+        <div class="experience-card">
+            <h3 class="job-title">Director & Audiovisual Producer</h3>
+            <p class="company">Freelance — International Projects</p>
+            <p class="period">2005 — 2020</p>
+            <p class="project-description">Direction, production and post-production for corporate and institutional clients across Belgium and Europe. Projects broadcast on Euronews and BBC.<br><br>Selected clients : Allianz · Laurent-Perrier · Uni Europa<br><br><em>Award : "À Films Ouverts" 2012 — Audience Award</em></p>
+        </div>
+
+        <div class="experience-card">
+            <h3 class="job-title">Animation & Motion Design</h3>
+            <p class="company">Creative Studios — Europe</p>
+            <p class="period">2010 — 2020</p>
+            <p class="project-description">Creation of animated content combining motion design, 3D animation and experimental visual research. Commercial and artistic projects in collaboration with creative studios across Europe.</p>
+        </div>
+
+        <div class="experience-card">
+            <h3 class="job-title">Livestream & Digital Broadcast</h3>
+            <p class="company">Théâtre Le Public, Brussels</p>
+            <p class="period">2020 — Pandemic Innovation</p>
+            <p class="project-description">At the height of the pandemic, recognising the urgency for the artistic community to adapt, I took the initiative to transition live theatre to a digital audience. In under two weeks, I led a team through the full process — concept, planning, technical setup and live execution of a streamed theatrical event.<br><br>The project required rapid adaptation under pressure, multi-camera direction, real-time broadcast management, and a deep understanding of both the technical and creative demands of live performance.<br><br>Covered by La Libre and Le Soir — two of Belgium's leading national newspapers.</p>
+        </div>
+
+        <div class="experience-card">
+            <h3 class="job-title">Camera & Multi-format Capture</h3>
+            <p class="company">Broadcast Productions</p>
+            <p class="period">2008 — 2020</p>
+            <p class="project-description">Multi-camera capture for live events and studio productions. Broadcast quality delivery for Euronews and BBC. Complete technical management of audiovisual production workflows.</p>
+        </div>
+
+        <h2 class="section-title" style="margin-top:2.5rem;">Awards & Recognition</h2>
+
+        <div class="award-card">
+            <h3 class="award-title">"À Films Ouverts" 2012</h3>
+            <p>Audience Award — Short Film Competition organized by Média Animation</p>
+        </div>
+        <div class="award-card">
+            <h3 class="award-title">2020 Digital Theatre Innovation</h3>
+            <p>Crisis leadership during pandemic adaptation — Théâtre Le Public</p>
+        </div>
+        <div class="award-card">
+            <h3 class="award-title">Prestigious International Collaborations</h3>
+            <p>Palazzo Reale Milan · Opéra-Théâtre de Metz · Vittorio Storaro · Dante Ferretti</p>
+        </div>
+
+        <h2 class="section-title print-break" style="margin-top:2.5rem;">Technical Expertise</h2>
+
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>AV Software</h3>
+                <ul class="skill-list">
+                    <li>Adobe Premiere Pro</li>
+                    <li>After Effects</li>
+                    <li>DaVinci Resolve</li>
+                    <li>Cinema 4D</li>
+                    <li>Advanced colour grading</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Projection Technologies</h3>
+                <ul class="skill-list">
+                    <li>Architectural mapping</li>
+                    <li>Holographic projection</li>
+                    <li>Multi-screen systems</li>
+                    <li>Real-time data flows</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Production</h3>
+                <ul class="skill-list">
+                    <li>Multi-camera direction</li>
+                    <li>Live broadcast</li>
+                    <li>Storyboarding</li>
+                    <li>Team coordination</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="languages-section">
+            <h2 class="section-title">Languages</h2>
+            <div class="language-list">
+                <div class="language-item">French — Native (C2)</div>
+                <div class="language-item">English — Fluent (C1)</div>
+                <div class="language-item">Arabic (Darija) — Native</div>
+                <div class="language-item">Dutch — Basic (B2)</div>
+            </div>
+        </div>
+
+        <div class="footer">Seddouk Rachid · Brussels · rachid.seddouk@gmail.com</div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════
+         PAGE 3b — AUDIOVISUAL PORTFOLIO
+    ══════════════════════════════════════════ -->
+    <div id="av-portfolio" class="page">
+        <div class="page-header">
+            <h1 class="name">Audiovisual Portfolio</h1>
+            <p class="subtitle">Stage Arts · Film · Animation · Livestream</p>
+        </div>
+
+        <!-- STAGE ARTS -->
+        <h2 class="section-title">Stage Arts & Museum</h2>
+
+        <div class="portfolio-section">
+            <h3 class="portfolio-title">Links — Stage Arts and Museum Projects</h3>
+
+            <div class="link-item">
+                <strong>The Living Tableau — The Last Supper (Palazzo Reale, Milan · 2022)</strong>
+                <a href="https://www.thelivingtableau.com/" target="_blank" class="link-btn">Official website</a>
+                <a href="https://italiabsolutely.com/inspirations/experiences-tips/the-last-supper-the-living-tableau-a-short-film-to-be-shown-in-the-frasassi-caves-from-10-to-18-april" target="_blank" class="link-btn">Article</a>
+            </div>
+
+            <div class="link-item">
+                <strong>Opéra-Théâtre de Metz Métropole</strong>
+                <a href="https://www.tous-a-lopera.fr/TOUS-A-LOPERA/doc/SYRACUSE/54456/charly-9?_lg=fr-FR" target="_blank" class="link-btn">Charly 9</a>
+                <a href="https://www.tous-a-lopera.fr/TOUS-A-LOPERA/doc/SYRACUSE/54443/romeo-et-juliette" target="_blank" class="link-btn">Roméo et Juliette</a>
+                <a href="https://www.opera-online.com/fr/items/productions/un-amour-en-guerre-opera-theatre-metz-metropole-2014-2014" target="_blank" class="link-btn">Un Amour en Guerre</a>
+                <a href="https://www.franceinfo.fr/culture/spectacles/danse/carmina-burana-et-la-maison-de-bernarda-alba-magistrale-soiree-de-ballets_3336609.html" target="_blank" class="link-btn">Carmina Burana</a>
+            </div>
+
+            <div class="link-item">
+                <strong>Cherry Plum — "How Strange Is The Man"</strong>
+                <div class="video-grid" style="margin-top:0.75rem;">
+                    <a href="https://www.youtube.com/watch?v=1NB5GfgRiko" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/1NB5GfgRiko/mqdefault.jpg" alt="Cherry Plum">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">Cherry Plum — Music Video</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="link-item">
+                <strong>Installation "Curtain / Behind the Curtain" (2010)</strong>
+                <div class="video-grid" style="margin-top:0.75rem;">
+                    <a href="https://www.youtube.com/watch?v=92QP8ITOx38" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/92QP8ITOx38/mqdefault.jpg" alt="Curtain Installation">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">Video Demonstration</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIDEOGRAPHY -->
+        <h2 class="section-title" style="margin-top:3rem;">Videographic Achievements</h2>
+
+        <div class="portfolio-section">
+            <h3 class="portfolio-title">Links — Videographic Achievements</h3>
+
+            <div class="link-item">
+                <strong>"À Films Ouverts" Prize 2012</strong>
+                <div class="video-grid" style="margin-top:0.75rem;">
+                    <a href="https://www.youtube.com/watch?v=rb0PDX2KgAk" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/rb0PDX2KgAk/mqdefault.jpg" alt="Ne nous ressemblent-ils pas">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">Ne nous ressemblent-ils pas</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="link-item">
+                <strong>Director/Editor Projects</strong>
+                <div class="video-grid" style="margin-top:0.75rem;">
+                    <a href="https://www.youtube.com/watch?v=aJqmkea6inA" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/aJqmkea6inA/mqdefault.jpg" alt="C'est arrivé près de chez vous">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">C'est arrivé près de chez vous — 25 ans · Galerie Ravenstein</div>
+                    </a>
+                    <a href="https://www.dailymotion.com/video/x4rm45" target="_blank" class="video-thumb">
+                        <img src="https://www.dailymotion.com/thumbnail/video/x4rm45" alt="Project Dailymotion">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">Lichen — Advertising</div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=-EemAmQmQNo" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/-EemAmQmQNo/mqdefault.jpg" alt="One Step">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">One Step</div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=-Brz9_DFvRs" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/-Brz9_DFvRs/mqdefault.jpg" alt="My Choice Not Yours">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">Forró : The Art of Happiness</div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=goRU0vC4Fns" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/goRU0vC4Fns/mqdefault.jpg" alt="DEMAONE">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">DEMAONE</div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=FWxCW7UTRA0" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/FWxCW7UTRA0/mqdefault.jpg" alt="INKEYE">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">INKEYE</div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=U0K20ryAYjM" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/U0K20ryAYjM/mqdefault.jpg" alt="Laurent Perrier">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">Laurent Perrier</div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=vTePhtLsZQg" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/vTePhtLsZQg/mqdefault.jpg" alt="T&G">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">T&amp;G</div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=SAfHGJIP4hU" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/SAfHGJIP4hU/mqdefault.jpg" alt="Brasileirinho's">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">Brasileirinho's</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="link-item">
+                <strong>Animation Projects</strong>
+                <div class="video-grid" style="margin-top:0.75rem;">
+                    <a href="https://www.youtube.com/watch?v=LtcskAvEn64" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/LtcskAvEn64/mqdefault.jpg" alt="Project 1">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">Project 1</div>
+                    </a>
+                    <a href="https://vimeo.com/84965430" target="_blank" class="video-thumb">
+                        <img src="https://vumbnail.com/84965430.jpg" alt="Project 2">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">Project 2 (Vimeo)</div>
+                    </a>
+                    <a href="https://vimeo.com/84965431" target="_blank" class="video-thumb">
+                        <img src="https://vumbnail.com/84965431.jpg" alt="Project 3">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">Project 3 (Vimeo)</div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=EX-zWrGSy9k" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/EX-zWrGSy9k/mqdefault.jpg" alt="Project 4">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">Project 4</div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=E68PzKbdles" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/E68PzKbdles/mqdefault.jpg" alt="Project 5">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">Project 5</div>
+                    </a>
+                    <a href="https://www.dailymotion.com/video/x4rmgq" target="_blank" class="video-thumb">
+                        <img src="https://www.dailymotion.com/thumbnail/video/x4rmgq" alt="Project 6">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">Project 6 (Dailymotion)</div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=WuE49mCxXPU" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/WuE49mCxXPU/mqdefault.jpg" alt="Project 7">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">Project 7</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="link-item">
+                <strong>Livestream Captures</strong>
+                <div class="video-grid" style="margin-top:0.75rem;">
+                    <a href="https://www.youtube.com/watch?v=Z6Xx81Syn1E" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/Z6Xx81Syn1E/mqdefault.jpg" alt="N'faly">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">N'faly</div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=GekdpO_qCbA" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/GekdpO_qCbA/mqdefault.jpg" alt="LA Cambre">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">LA Cambre</div>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=mYVdqWSGLDo" target="_blank" class="video-thumb">
+                        <img src="https://img.youtube.com/vi/mYVdqWSGLDo/mqdefault.jpg" alt="Taking Care of Baby">
+                        <div class="play-overlay"><div class="play-icon"></div></div>
+                        <div class="video-label">Taking Care of Baby</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="link-item">
+                <strong>Press Articles — Livestream</strong>
+                <a href="https://www.lalibre.be/culture/scenes/2020/06/16/richard-ruben-une-salle-vide-cest-un-spectateur-AIP7ZL7UZZGZFJVKPWOVJE4DCA/" target="_blank" class="link-btn">La Libre</a>
+                <a href="https://www.lesoir.be/307441/article/2020-06-16/suzanne-se-confine-vous-en-direct-filme" target="_blank" class="link-btn">Le Soir</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════
+         PAGE 4a — PROMPT ENGINEERING CV
+    ══════════════════════════════════════════ -->
+    <div id="pe-cv" class="page">
+        <div class="page-header">
+            <h1 class="name">SEDDOUK RACHID</h1>
+            <p class="subtitle">Prompt Engineer · AI Product Manager · Independent Contractor</p>
+            <p class="meta">BCE 787.434.914 · Brussels, Belgium</p>
+        </div>
+
+        <button class="pdf-btn" onclick="printCurrentPage('Seddouk Rachid — CV Prompt Engineer')">↓ Download as PDF — Prompt Engineer CV</button>
+
+        <div class="editorial" style="margin-bottom:2.5rem;">
+            <p>Prompt Engineer and AI Product Manager operating at the intersection of generative AI, product design, and creative direction. I design AI systems that produce meaningful, structured, and scalable output — from psychometric assessment pipelines to immersive educational simulations. Affiliated with the FARI AI Institute (VUB/ULB), certified in EU AI Act compliance.</p>
+        </div>
+
+        <h2 class="section-title">Current Roles</h2>
+
+        <div class="experience-card">
+            <h3 class="job-title">CTO & Co-founder — Avance</h3>
+            <p class="company">avance.today</p>
+            <p class="period">2023 — Present</p>
+            <p class="project-description">Multilingual AI career guidance platform for young people aged 14–20. A proprietary psychometric model maps personality dimensions to a structured career matching algorithm, producing personalised action plans across multiple languages and cultural contexts.</p>
+        </div>
+
+        <div class="experience-card">
+            <h3 class="job-title">Founder — ShieldMind</h3>
+            <p class="company">shieldmind.eu</p>
+            <p class="period">2023 — Present</p>
+            <p class="project-description">AI-based cyberbullying prevention platform. Immersive educational simulation using real-time character AI, state-driven prompting, and scientifically sourced behavioural coefficients. Tested in 15 schools across France and Italy.</p>
+        </div>
+
+        <div class="experience-card">
+            <h3 class="job-title">Developer — Hidden Team Performance Diagnostic</h3>
+            <p class="company">B2B SaaS — HR Analytics</p>
+            <p class="period">2024</p>
+            <p class="project-description">B2B SaaS HR analytics platform built after deep analysis of existing consulting practice. A system of specialised AI analyzers anchored in Amy Edmondson, Lencioni, Tuckman and Google Aristotle frameworks. Deployed in production for a corporate client.</p>
+        </div>
+
+        <div class="experience-card">
+            <h3 class="job-title">Independent Contractor — Freelance AI & Prompt Engineering</h3>
+            <p class="company">BCE 787.434.914</p>
+            <p class="period">2023 — Present</p>
+            <p class="project-description">B2B consulting in prompt system architecture, AI product management, and generative AI integration for European clients.</p>
+        </div>
+
+        <h2 class="section-title" style="margin-top:2.5rem;">Affiliation</h2>
+
+        <div class="award-card">
+            <h3 class="award-title">FARI AI Institute — VUB/ULB, Brussels</h3>
+            <p>Incubator member — AI for the Common Good</p>
+        </div>
+
+        <h2 class="section-title print-break" style="margin-top:2.5rem;">Certifications</h2>
+
+        <div class="cert-group">
+            <p class="cert-group-title">AI & Prompt Engineering</p>
+            <ul class="cert-list">
+                <li>Prompt Engineering Specialization · Vanderbilt University</li>
+                <li>Trustworthy Generative AI · Vanderbilt University</li>
+                <li>AI Fundamentals for Non-Data Scientists · University of Pennsylvania</li>
+                <li>Building AI Powered Chatbots Without Programming · IBM</li>
+            </ul>
+        </div>
+
+        <div class="cert-group">
+            <p class="cert-group-title">Machine Learning & Algorithms</p>
+            <ul class="cert-list">
+                <li>Supervised Machine Learning: Regression and Classification · DeepLearning.AI</li>
+                <li>Advanced Learning Algorithms · DeepLearning.AI</li>
+                <li>AI Applications in Marketing and Finance · University of Pennsylvania</li>
+            </ul>
+        </div>
+
+        <div class="cert-group">
+            <p class="cert-group-title">Strategy & Governance</p>
+            <ul class="cert-list">
+                <li>EU AI Act · VUB/ULB</li>
+                <li>AI Strategy and Governance · University of Pennsylvania</li>
+                <li>Computational Thinking for Problem Solving · University of Pennsylvania</li>
+            </ul>
+        </div>
+
+        <div class="cert-group">
+            <p class="cert-group-title">Project Management</p>
+            <ul class="cert-list">
+                <li>Project Lifecycle, Information Sharing & Risk Management · SkillUp</li>
+                <li>Project Management Foundations, Initiation & Planning · SkillUp</li>
+                <li>Introduction to Project Management · IBM</li>
+            </ul>
+        </div>
+
+        <p class="cert-note">All certifications completed June — September 2024</p>
+
+        <h2 class="section-title print-break" style="margin-top:2.5rem;">Technical Skills</h2>
+
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Prompt Engineering</h3>
+                <ul class="skill-list">
+                    <li>Generative storyboarding</li>
+                    <li>Prompt library architecture</li>
+                    <li>Contextual pre-framing</li>
+                    <li>Persona injection</li>
+                    <li>Multilingual templating</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>AI & LLM</h3>
+                <ul class="skill-list">
+                    <li>LangChain</li>
+                    <li>RAG architectures</li>
+                    <li>LLM integration</li>
+                    <li>GPT-4o · Claude</li>
+                    <li>Vector databases</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Development</h3>
+                <ul class="skill-list">
+                    <li>Python</li>
+                    <li>Node.js · React</li>
+                    <li>TypeScript</li>
+                    <li>PostgreSQL · Supabase</li>
+                    <li>REST APIs</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Architecture</h3>
+                <ul class="skill-list">
+                    <li>Multi-agent systems</li>
+                    <li>AI pipeline design</li>
+                    <li>Real-time WebSocket</li>
+                    <li>Multilingual NLP</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="background:var(--background-white); padding:2rem; border:1px solid var(--border-light); margin-bottom:2rem; box-shadow:var(--shadow-subtle);">
+            <p style="font-style:italic; color:var(--secondary-dark); line-height:1.9;">Prompt systems designed as creative frameworks — structured, scalable, intentional. Each prompt carries a persona, a constraint, a conditional rule, and an output format engineered for reliable execution at scale.</p>
+        </div>
+
+        <div class="languages-section">
+            <h2 class="section-title">Languages</h2>
+            <div class="language-list">
+                <div class="language-item">French — Native (C2)</div>
+                <div class="language-item">English — Fluent (C1)</div>
+                <div class="language-item">Arabic (Darija) — Native</div>
+                <div class="language-item">Dutch — Basic (B2)</div>
+            </div>
+        </div>
+
+        <div class="footer">Seddouk Rachid · Brussels · rachid.seddouk@gmail.com · BCE 787.434.914</div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════
+         PAGE 4b — PE PORTFOLIO
+    ══════════════════════════════════════════ -->
+    <div id="pe-portfolio" class="page">
+        <div class="page-header">
+            <h1 class="name">Prompt Engineering</h1>
+            <p class="subtitle">Portfolio — Three Production Systems</p>
+        </div>
+
+        <div class="editorial" style="margin-bottom:3rem;">
+            <p>Prompt engineering, as I practice it, is not about writing instructions. It is about designing the conditions under which a generative system produces something precise, consistent, and meaningful.</p>
+            <p>I call it what it is : a Socratic practice. A maieutic art guided by semantic equations — the deliberate reduction of a language model's infinite probabilistic space into an intentional, structured response.</p>
+            <p>Each project below represents a different application of that philosophy — a different domain, a different constraint system, a different creative problem solved through prompt architecture.</p>
+        </div>
+
+        <div class="pe-card" onclick="showPage('pe-avance','pe')">
+            <h3 class="pe-card-title">Avance</h3>
+            <p class="pe-card-sub">AI Career Guidance Platform · avance.today</p>
+            <p class="pe-card-body">A psychometric pipeline that translates personality into personalised career paths — across languages, cultures, and contexts.</p>
+            <span class="pe-card-link">See project →</span>
+        </div>
+
+        <div class="pe-card" onclick="showPage('pe-shieldmind','pe')">
+            <h3 class="pe-card-title">ShieldMind</h3>
+            <p class="pe-card-sub">Cyberbullying Prevention Simulation · shieldmind.eu</p>
+            <p class="pe-card-body">Real-time AI characters that evolve psychologically during a live educational session — engineered for immersion, safety, and measurable behavioural change.</p>
+            <span class="pe-card-link">See project →</span>
+        </div>
+
+        <div class="pe-card" onclick="showPage('pe-hidden','pe')">
+            <h3 class="pe-card-title">Hidden Team Performance Diagnostic</h3>
+            <p class="pe-card-sub">B2B HR Analytics Platform</p>
+            <p class="pe-card-body">A system of specialised AI analyzers that surfaces what team surveys cannot — the invisible dynamics that determine performance.</p>
+            <span class="pe-card-link">See project →</span>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════
+         PAGE 4c — AVANCE
+    ══════════════════════════════════════════ -->
+    <div id="pe-avance" class="page">
+        <div class="page-header">
+            <h1 class="name">Avance</h1>
+            <p class="subtitle">AI Career Guidance Platform</p>
+        </div>
+
+        <div class="editorial">
+            <p>Career guidance for young people has long relied on generic personality tests that tell you who you are — but not what to do next. Avance was built to close that gap.</p>
+
+            <p>The platform guides users through a structured self-assessment, then produces a personalised career profile — matched to real occupational frameworks, translated into actionable steps, and delivered in their language.</p>
+
+            <p>My role was not only to build the system — it was to design the logic underneath it. How a question should be interpreted. How a response should be weighted. How personality dimensions should map to career paths.</p>
+
+            <p>The real challenge was translation — not linguistic, but conceptual. Taking the complexity of psychometric analysis and rendering it into responses that are coherent, warm, and genuinely meaningful to a young person navigating their future for the first time.</p>
+
+            <p>The prompt architecture is the product. A library of specialised prompts — each carrying a persona, a set of conditional rules, and a structured output format — working together to transform a test result into something that feels personal, not generated.</p>
+
+            <p>The system was co-designed with a career coach specialising in youth guidance — ensuring that the AI output was not only technically sound, but genuinely useful in a real accompaniment context.</p>
+
+            <p>Available in multiple languages. Deployed in production.</p>
+
+            <div style="text-align:center; margin-top:2rem;">
+                <a href="https://avance.today" target="_blank" class="project-live-link">→ avance.today</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════
+         PAGE 4d — SHIELDMIND
+    ══════════════════════════════════════════ -->
+    <div id="pe-shieldmind" class="page">
+        <div class="page-header">
+            <h1 class="name">ShieldMind</h1>
+            <p class="subtitle">Cyberbullying Prevention Platform</p>
+        </div>
+
+        <div class="editorial">
+            <p>Most anti-bullying programmes tell young people what to think. ShieldMind puts them inside the situation.</p>
+
+            <p>The platform simulates a real online conversation — with AI characters that play out the dynamics of cyberbullying in real time. Students don't observe the scenario. They participate in it, making decisions under social pressure, in the same conditions where bullying actually happens.</p>
+
+            <p>The design challenge was not technical — it was psychological. How to make AI characters feel credible to teenagers. How to create tension without causing harm. How to build a simulation that is immersive enough to provoke a real emotional response, and structured enough to remain safe and pedagogically sound.</p>
+
+            <p>My role was to translate decades of research on group psychology and adolescent behaviour into the logic of a prompt system. Each character carries a personality, a role, and a set of behavioural rules that evolve as the session unfolds. The conversation is never scripted — it is generated, in real time, from that architecture.</p>
+
+            <p>The result is an experience that changes how young people respond — not by telling them what to do, but by letting them discover it themselves.</p>
+
+            <p>The simulation was co-designed with a Rome-based team specialising in cyberbullying prevention through role-play — their fieldwork directly informed the behavioural architecture and the pedagogical structure of each scenario.</p>
+
+            <p>Tested in schools across France and Italy. Available in multiple languages.</p>
+
+            <div style="text-align:center; margin-top:2rem;">
+                <a href="https://shieldmind.eu" target="_blank" class="project-live-link">→ shieldmind.eu</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════
+         PAGE 4e — HIDDEN TEAM
+    ══════════════════════════════════════════ -->
+    <div id="pe-hidden" class="page">
+        <div class="page-header">
+            <h1 class="name">Hidden Team</h1>
+            <p class="subtitle">Performance Diagnostic · B2B HR Analytics</p>
+        </div>
+
+        <div class="editorial">
+            <p>Every team has a surface story — the one that appears in performance reviews and management reports. And then there is what actually drives it : the unspoken dynamics, the invisible tensions, the patterns that no survey has ever been designed to catch.</p>
+
+            <p>The Hidden Team Performance Diagnostic was built to surface the second story.</p>
+
+            <p>The platform collects anonymous qualitative and quantitative input from team members, then runs it through a system of specialised AI analyzers — each one anchored in a recognised framework of organisational psychology. The output is not a report. It is a structured diagnostic that gives leaders something rare : an evidence-based picture of what is actually happening inside their team.</p>
+
+            <p>My role began with analysis. I studied existing consulting practice in this domain — how teams were assessed, where the gaps were, what the frameworks said versus what practitioners actually needed. From that analysis, I designed the system : the questions, the analytical logic, the prompt architecture that translates human responses into strategic insight.</p>
+
+            <p>Each analyzer was built around a specific dimension of team health. Each prompt was engineered to produce output that is precise, actionable, and calibrated to the language of leadership.</p>
+
+            <p>The diagnostic framework was co-designed with a specialist in team performance and organisational development — whose expertise shaped both the questions asked and the analytical logic applied to the responses.</p>
+
+            <p>Deployed in production for a corporate client.</p>
+
+            <div style="text-align:center; margin-top:2rem;">
+                <a href="https://hidden-team-performance-diagnostic-v2.onrender.com/" target="_blank" class="project-live-link">→ Hidden Team</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    let currentSection = 'identity';
+    let currentPages = { av: 'av-cv', pe: 'pe-cv' };
+
+    function showSection(section) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.sub-nav').forEach(n => n.classList.remove('visible'));
+        document.querySelectorAll('.main-nav-btn').forEach(b => b.classList.remove('active'));
+
+        currentSection = section;
+
+        if (section === 'identity') {
+            document.getElementById('identity').classList.add('active');
+        } else if (section === 'intention') {
+            document.getElementById('intention').classList.add('active');
+        } else if (section === 'av') {
+            document.getElementById('sub-av').classList.add('visible');
+            document.getElementById(currentPages.av).classList.add('active');
+        } else if (section === 'pe') {
+            document.getElementById('sub-pe').classList.add('visible');
+            document.getElementById(currentPages.pe).classList.add('active');
+        }
+
+        document.querySelectorAll('.main-nav-btn').forEach(b => {
+            if (b.getAttribute('onclick').includes(section)) b.classList.add('active');
+        });
+    }
+
+    function showPage(pageId, section) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        currentPages[section] = pageId;
+
+        const subNav = document.getElementById('sub-' + section);
+        if (subNav) {
+            subNav.querySelectorAll('.sub-nav-btn').forEach(b => {
+                b.classList.remove('active');
+                if (b.getAttribute('onclick').includes(pageId)) b.classList.add('active');
+            });
+        }
+    }
+
+    const defaultTitle = document.title;
+
+    // Initialisation propre au chargement — seule la page identity est visible
+    document.addEventListener('DOMContentLoaded', function () {
+        showSection('identity');
+    });
+
+    function printCurrentPage(filename) {
+        if (filename) document.title = filename;
+        window.print();
+    }
+
+    window.addEventListener('afterprint', function () {
+        document.title = defaultTitle;
+    });
+</script>
+</body>
+</html>
